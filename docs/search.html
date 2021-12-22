@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../src/search.js" type="module"></script>
   <link rel="stylesheet" href="./css/stylesheet.css">
   <title>Document</title>
 </head>
@@ -13,5 +14,32 @@
     <li class="navigation-item nav-active"><a href="search.html" class="nav-text">Search</a></li>
     <li class="navigation-item"><a href="stock.html" class="nav-text">Stock</a></li>
 </nav>
+
+  <div class="search-terms">
+  <h4 class="search-terms-title">Search new cocktails: </h4>
+
+  <form class="search-cocktails-by-name" id="search-by-name">
+    <label class="search-label-name" for="search-name">Cocktail name: </label>
+    <div>
+      <input class="search-input-name" type="text" id="search-name" value="">
+      <input class="search-input-name-submit" type="submit" value="Search">
+    </div>
+  </form>
+  
+  <form class="search-cocktails-by-ingredient" id="search-by-ingredient">
+    <label class="search-label-ingredient" for="search-ingredient">Give us one ingredient: </label>
+    <div>
+      <input class="search-input-ingredient" type="text" id="search-ingredient" value="">
+      <input class="search-input-ingredient-submit" type="submit" value="Search">
+    </div>
+  </form>
+  </div>
+
+<div class="cocktail-catalogue" id="cocktail-catalogue">
+
+</div>
+
+
+</div>
 </body>
 </html>

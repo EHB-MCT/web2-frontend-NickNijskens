@@ -13,6 +13,27 @@
       <li class="navigation-item"><a href="search.html" class="nav-text">Search</a></li>
       <li class="navigation-item"><a href="stock.html" class="nav-text">Stock</a></li>
   </nav>
+
+  <div class="search-terms">
+    <h4 class="search-terms-title">Search new cocktails: </h4>
+
+    <form class="search-cocktails-by-name">
+      <label class="search-label-name" for="search-name">Cocktail name: </label>
+      <div>
+        <input class="search-input-name" type="text" id="search-name">
+        <input class="search-input-name-submit" type="submit" value="Search">
+      </div>
+    </form>
+    
+    <form class="search-cocktails-by-ingredient">
+      <label class="search-label-ingredient" for="search-ingredient">Give us one ingredient: </label>
+      <div>
+        <input class="search-input-ingredient" type="text" id="search-ingredient">
+        <input class="search-input-ingredient-submit" type="submit" value="Search">
+      </div>
+    </form>
+  </div>
+
   <div id="cocktails" class="cocktails">
     <div class="flex-cocktail-container">
       <div class="flex-cocktail blue">
@@ -57,6 +78,9 @@
     
   <div id="cocktailCatalogue" class="cocktail-catalogue">
     <form class="cocktail-catalogue-form blue" value="15423">
+      <div class="cocktail-catalogue-img-container">
+        <img class="cocktail-catalogue-img" src="https://www.thecocktaildb.com/images/media/drink/xxyywq1454511117.jpg">
+      </div>
       <div class="cocktail-catalogue-title">110 in the shade</div>
       <div class="cocktail-catalogue-ingredients">Lager, Tequila</div>
       <div class="cocktail-catalogue-price-container">
@@ -65,6 +89,10 @@
         <input class="cocktail-catalogue-submit" type="submit" value="Add">
       </div>
     </form>
+
+    <div class="empty-catalogue">
+      <h4 class="empty-catalogue-text">Please enter valid search terms</h4>
+    </div>
   </div>
 
   <div id="stock" class="stock">

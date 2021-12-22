@@ -194,6 +194,7 @@
   font-family: 'Segoe UI';
   font-size: medium;
   font-weight: 400;
+  align-items: center;
 }
 
 .cocktail-catalogue-title {
@@ -201,9 +202,28 @@
   padding-left: 10px;
 }
 
+.cocktail-catalogue-img-container {
+  width: 10%;
+  padding: 5px;
+}
+
+.cocktail-catalogue-img {
+  transition-duration: 0.5s;
+  width: 100%;
+  border: 3px solid #fece9b;
+  border-radius: 2px;
+}
+
+.cocktail-catalogue-img:hover {
+  transition-duration: 0.5s;
+  transform: scale(2.5);
+}
+
+
 .cocktail-catalogue-ingredients {
   font-family: 'Segoe UI';
   font-style: italic;
+  font-size: small;
   float: left;
 }
 
@@ -280,4 +300,105 @@
   border: 2px solid white;
   border-radius: 5px;
   margin-right: 10px;
+}
+
+.search-terms {
+  margin-right: 10%;
+  margin-left: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fece9b;
+  width: 30%;
+  border-radius: 15px;
+  padding: 15px;
+  font-family: 'Segoe UI'
+}
+
+.search-terms-title {
+  margin: 0px;
+  font-weight: 450;
+  font-size: larger
+}
+
+.search-cocktails-by-name {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-label-name {
+  margin-left: 10%;
+}
+
+.search-cocktails-by-ingredient {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-label-ingredient {
+  margin-left: 10%;
+}
+
+.search-input-name {
+  border: 0px solid white;
+  width: 60%;
+}
+
+.search-input-ingredient {
+  border: 0px solid white;
+  width: 60%;
+}
+
+.search-input-name-submit {
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid white;
+  font-family: 'Segoe UI';
+  font-weight: 420;
+  font-size: small;
+}
+
+.search-input-name-submit:hover {
+  transition-duration: 0.4s;
+  border: 2px solid #aadff0;
+  border-radius: 10px;
+}
+
+.search-input-ingredient-submit {
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid white;
+  font-family: 'Segoe UI';
+  font-weight: 420;
+  font-size: small;
+}
+
+.search-input-ingredient-submit:hover {
+  transition-duration: 0.4s;
+  border: 2px solid #aadff0;
+  border-radius: 10px;
+}
+
+.empty-catalogue {
+  margin-left: 40px;
+  margin-top: 20%;
+  background-color: #aadff0;
+  border-radius: 20px;
+}
+
+.empty-catalogue-text {
+  padding: 10px;
+  margin: 0;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  font-size: large;
+}
+
+.search-content {
+  display: flex;
+  flex-direction: row;
 }
