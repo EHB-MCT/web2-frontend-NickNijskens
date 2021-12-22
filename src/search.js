@@ -13,6 +13,7 @@ window.onload = () => {
   }
   let displayedDrinks = []
   let URL = 'https://web2-project-backend-nnijskens.herokuapp.com/api/';
+  let elementsPerSearch = 10;
   async function bindSearchEvents(){
     document.getElementById('search-by-name').addEventListener('submit', async () => {
       event.preventDefault();
@@ -21,24 +22,29 @@ window.onload = () => {
       const resp = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktailName}`);
       const data = await resp.json();
       let HTMLstring = "";
+      let iter = 0;
       if(data.drinks != null){
         data.drinks.forEach((obj) => {
-          let ingredientsArray = [];
-          let measuresArray = [];
-          for(let i = 1; i <= 15; i++){
-            let ingredient = obj[`strIngredient${i}`];
-            let measure = obj[`strMeasure${i}`];
-            if(ingredient != null && measure != null){
-              ingredientsArray.push(ingredient);
-              measuresArray.push(measure)
+          if(iter < elementsPerSearch){
+            let ingredientsArray = [];
+            let measuresArray = [];
+            for(let i = 1; i <= 15; i++){
+              let ingredient = obj[`strIngredient${i}`];
+              let measure = obj[`strMeasure${i}`];
+              if(ingredient != null && measure != null){
+                ingredientsArray.push(ingredient);
+                measuresArray.push(measure)
+              }
+              if(ingredient != null && measure == null){
+                ingredientsArray.push(ingredient);
+                measuresArray.push("a pinch");
+              }
             }
-            if(ingredient != null && measure == null){
-              ingredientsArray.push(ingredient);
-              measuresArray.push("a pinch");
-            }
+            let drink = new Drink(obj.idDrink, obj.strDrink, obj.strDrinkThumb, obj.strInstructions, ingredientsArray.length, ingredientsArray, measuresArray);
+            displayedDrinks.push(drink);
+            iter++;
           }
-          let drink = new Drink(obj.idDrink, obj.strDrink, obj.strDrinkThumb, obj.strInstructions, ingredientsArray.length, ingredientsArray, measuresArray);
-          displayedDrinks.push(drink);
+          
         })
         let even = true;
         displayedDrinks.forEach((obj) => {
@@ -89,66 +95,71 @@ window.onload = () => {
       event.preventDefault();
       let HTMLstring = ``;
       let even = true;
+      let iter = 0;
       let cocktailIngredient = document.getElementById('search-ingredient').value;
       const resp = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktailIngredient}`);
       try{
         const data = await resp.json();
         data.drinks.forEach(async (obj) => {
-          let ingredientsArray = [];
-          let measuresArray = [];
-          const drinkResp = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${obj.idDrink}`);
-          await drinkResp.json().then((res) => {
-            let drink = res.drinks[0];
-            for(let i = 1; i <= 15; i++){
-              let ingredient = drink[`strIngredient${i}`];
-              let measure = drink[`strMeasure${i}`];
-              if(ingredient != null && measure != null){
-                ingredientsArray.push(ingredient);
-                measuresArray.push(measure);
+          if(iter < elementsPerSearch){
+
+            let ingredientsArray = [];
+            let measuresArray = [];
+            const drinkResp = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${obj.idDrink}`);
+            await drinkResp.json().then((res) => {
+              let drink = res.drinks[0];
+              for(let i = 1; i <= 15; i++){
+                let ingredient = drink[`strIngredient${i}`];
+                let measure = drink[`strMeasure${i}`];
+                if(ingredient != null && measure != null){
+                  ingredientsArray.push(ingredient);
+                  measuresArray.push(measure);
+                }
+                if(ingredient != null && measure == null){
+                  ingredientsArray.push(ingredient);
+                  measuresArray.push("a pinch");
+                }
+                
               }
-              if(ingredient != null && measure == null){
-                ingredientsArray.push(ingredient);
-                measuresArray.push("a pinch");
+              displayedDrinks.push(new Drink(drink.idDrink, drink.strDrink, drink.strDrinkThumb, drink.strInstructions, ingredientsArray.length, ingredientsArray, measuresArray));
+              //Generate HTMLstring
+              if(even){
+                HTMLstring += `<form class="cocktail-catalogue-form blue" id=${drink.idDrink} name="${obj.name}">`
+                even = false;
               }
-              
-            }
-            displayedDrinks.push(new Drink(drink.idDrink, drink.strDrink, drink.strDrinkThumb, drink.strInstructions, ingredientsArray.length, ingredientsArray, measuresArray));
-            //Generate HTMLstring
-            if(even){
-              HTMLstring += `<form class="cocktail-catalogue-form blue" id=${drink.idDrink} name="${obj.name}">`
-              even = false;
-            }
-            else {
-              HTMLstring += `<form class="cocktail-catalogue-form green" id=${drink.idDrink} name="${obj.name}">`
-              even = true;
-            }
-            HTMLstring += `<div class="cocktail-catalogue-img-container">
-            <img class="cocktail-catalogue-img" src=${drink.strDrinkThumb}>
-            </div>
-            <div class="cocktail-catalogue-title">${drink.strDrink}</div>
-            <div class="cocktail-catalogue-ingredients">`;
-            for(let i = 0; i < ingredientsArray.length; i++){
-              if(i == ingredientsArray.length){
-                HTMLstring += ingredientsArray[i];
+              else {
+                HTMLstring += `<form class="cocktail-catalogue-form green" id=${drink.idDrink} name="${obj.name}">`
+                even = true;
               }
-              else{
-                HTMLstring += `${ingredientsArray[i]}, `
+              HTMLstring += `<div class="cocktail-catalogue-img-container">
+              <img class="cocktail-catalogue-img" src=${drink.strDrinkThumb}>
+              </div>
+              <div class="cocktail-catalogue-title">${drink.strDrink}</div>
+              <div class="cocktail-catalogue-ingredients">`;
+              for(let i = 0; i < ingredientsArray.length; i++){
+                if(i == ingredientsArray.length){
+                  HTMLstring += ingredientsArray[i];
+                }
+                else{
+                  HTMLstring += `${ingredientsArray[i]}, `
+                }
               }
-            }
-            HTMLstring += `</div>
-            <div class="cocktail-catalogue-price-container">
-            <label class="cocktail-catalogue-price-label" for="price${drink.idDrink}">Price €</label>
-            <input class="cocktail-catalogue-price" type="number" id="price${drink.idDrink}" value=4>
-            <input class="cocktail-catalogue-submit" type="submit" value="Add">
-            </div>
-            </form>`;
-          });
-          // Insert HTMLstring
-          document.getElementById('cocktail-catalogue').innerHTML = HTMLstring;
-          displayedDrinks.forEach((drink) => {
-            cocktailInDatabase(drink.name).then((res) => console.log(res));
-          })
-          bindAddEvents();
+              HTMLstring += `</div>
+              <div class="cocktail-catalogue-price-container">
+              <label class="cocktail-catalogue-price-label" for="price${drink.idDrink}">Price €</label>
+              <input class="cocktail-catalogue-price" type="number" id="price${drink.idDrink}" value=4>
+              <input class="cocktail-catalogue-submit" type="submit" value="Add">
+              </div>
+              </form>`;
+            });
+            // Insert HTMLstring
+            document.getElementById('cocktail-catalogue').innerHTML = HTMLstring;
+            displayedDrinks.forEach((drink) => {
+              cocktailInDatabase(drink.name).then((res) => console.log(res));
+            })
+            bindAddEvents();
+            iter++;
+          }
         })
       }
       catch(e){
