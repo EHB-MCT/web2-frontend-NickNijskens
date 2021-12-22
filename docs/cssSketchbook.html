@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/stylesheet.css">
+  <title>Document</title>
+</head>
+<body>
+  <nav id="nav" class="navigation">
+      <li class="navigation-item nav-active"><a href="home.html" class="nav-text">Home</a></li>
+      <li class="navigation-item"><a href="search.html" class="nav-text">Search</a></li>
+      <li class="navigation-item"><a href="stock.html" class="nav-text">Stock</a></li>
+  </nav>
+  <div id="cocktails" class="cocktails">
+    <div class="flex-cocktail-container">
+      <div class="flex-cocktail blue">
+        <h6 class="cocktail-card-title">Margarita</h6>
+        <div class="cocktail-card-content">
+          <img class="cocktail-img" src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg">
+          <ul class="cocktail-card-ingredients">
+            <li><p class="cocktail-ingredient">Tequila: 1 1/2 oz</p></li>
+            <li><p class="cocktail-ingredient">Triple sec: 1/2 oz</p></li>
+            <li><p class="cocktail-ingredient">Lime juice: 1 oz</p></li>
+            <li><p class="cocktail-ingredient">Salt: a pinch</p></li>
+          </ul>
+          <p class="cocktail-card-instructions">Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.</p>
+        </div>
+        <input type="button" class="delete-cocktail" value="Remove" id=61af2afe3e4f884b41996df7>
+        <input type="button" class="make-cocktail" value="Make" id=61af2afe3e4f884b41996df7>
+      </div>
+
+      <span class="cocktail-price"><p class="cocktail-price-text">€4</p></span>
+    </div>
+
+    <div class="flex-cocktail-container">
+      <div class="flex-cocktail green">
+        <h6 class="cocktail-card-title">Margarita</h6>
+        <div class="cocktail-card-content">
+          <img class="cocktail-img" src="https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg">
+          <ul class="cocktail-card-ingredients">
+            <li><p class="cocktail-ingredient">Tequila: 1 1/2 oz</p></li>
+            <li><p class="cocktail-ingredient">Triple sec: 1/2 oz</p></li>
+            <li><p class="cocktail-ingredient">Lime juice: 1 oz</p></li>
+            <li><p class="cocktail-ingredient">Salt: a pinch</p></li>
+          </ul>
+          <p class="cocktail-card-instructions">Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.</p>
+        </div>
+        <input type="button" class="delete-cocktail" value="Remove" id=61af2afe3e4f884b41996df7>
+        <input type="button" class="make-cocktail" value="Make" id=61af2afe3e4f884b41996df7>
+      </div>
+
+      <span class="cocktail-price"><p class="cocktail-price-text">€3.80</p></span>
+    </div>
+  </div>
+    
+  <div id="cocktailCatalogue" class="cocktail-catalogue">
+    <form class="cocktail-catalogue-form blue" value="15423">
+      <div class="cocktail-catalogue-title">110 in the shade</div>
+      <div class="cocktail-catalogue-ingredients">Lager, Tequila</div>
+      <div class="cocktail-catalogue-price-container">
+        <label class="cocktail-catalogue-price-label" for="price15423">Price €</label>
+        <input class="cocktail-catalogue-price" type="number" id="price15423" value="4">
+        <input class="cocktail-catalogue-submit" type="submit" value="Add">
+      </div>
+    </form>
+  </div>
+
+  <div id="stock" class="stock">
+    <form class="stock-form green" value="61af2c2a3e4f884b41996df8">
+      <div class="stock-title">Tequila</div>
+      <div class="stock-amount-container">
+        <label class="stock-amount-label" for="stock">Amount: </label>
+        <input class="stock-amount-number" type="number" name="stock" value=5>
+        <input class="stock-amount-submit" type="submit" value="Change">
+      </div>
+    </form>
+  </div>
+    
+  </div>
+</body>
+</html>
